@@ -216,7 +216,7 @@ class TrueCrypt:
 				print('modprobe %s' % (mod))
 				sp = subprocess.Popen('/usr/bin/sudo /sbin/modprobe %s' % (mod), shell=True)
 				sp.communicate()
-				if sp.returncode == 0:
-					return True
-				else:
+				if sp.returncode > 0:
 					return False
+
+		return True
