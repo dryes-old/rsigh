@@ -381,7 +381,7 @@ def main():
 		sys.exit(1)
 
 	global temp
-	temp = os.path.normpath(args['tmp_dir']) + os.sep + 'rsigh-tmp-' + str(os.getpid()) + os.sep
+	temp = os.path.normpath(os.path.expanduser(args['tmp_dir'])) + os.sep + 'rsigh-tmp-' + str(os.getpid()) + os.sep
 
 	filename = str(uuid.uuid4())
 	while volcheck(sqlite, filename) == False:
