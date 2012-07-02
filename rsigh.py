@@ -404,11 +404,11 @@ def main():
 		rmtmp()
 		sys.exit(1)
 
-	passwords.append(tc.create((filesize(input)+8388608), password=args['tc_ov_password'], enc_algorithm=args['tc_encryption_algo'], \
+	passwords.append(tc.create((((filesize(input)*1.10)+1310720)), password=args['tc_ov_password'], enc_algorithm=args['tc_encryption_algo'], \
 		hash_algorithm=args['tc_hash_algo'], filesystem=args['tc_filesystem'], random_char_length=args['tc_randcharlen']))
 
 	if args['tc_volume_type'] == 'hidden':
-		passwords.append(tc.create((filesize(input)+4194304), password=args['tc_hv_password'], type='hidden', enc_algorithm=args['tc_encryption_algo'], \
+		passwords.append(tc.create((((filesize(input)*1.075)+655360)), password=args['tc_hv_password'], type='hidden', enc_algorithm=args['tc_encryption_algo'], \
 			hash_algorithm=args['tc_hash_algo'], filesystem=args['tc_filesystem'], random_char_length=args['tc_randcharlen']))
 
 	if args['tc_volume_type'] == 'hidden':
