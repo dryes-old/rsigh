@@ -71,7 +71,7 @@ def init_configparser(filename='~/.config/rsigh/rsigh.cfg'):
 def init_argparse(config):
 	parser = argparse.ArgumentParser(description='Post encrypted files to Usenet.', usage=os.path.basename(sys.argv[0]) + ' [--opts] input')
 
-	parser.add_argument('input', nargs='?', help='dirname or file to process/search for', default='')
+	parser.add_argument('input', nargs='*', help='dirname or file to process/search for', default='')
 
 	parser.add_argument('--search', '-s', action='store_true', help='search dirname column', default=False)
 	parser.add_argument('--collect', '-c', action='store_true', help='copy NZB to watch dir', default=False)
@@ -117,8 +117,11 @@ def init_argparse(config):
 	parser.add_argument('--retention', default=config['usenet']['retention'])
 
 	args = parser.parse_args()
+	args = vars(args)
 
-	return vars(args)
+	args['input'] = ' '.join(args['input'])
+
+	return args
 
 def init_sqlite(filename='~/.rsigh/rsigh.db'):
 	filename = os.path.expanduser(filename)
